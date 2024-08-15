@@ -7,6 +7,7 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.jms.core.JmsTemplate;
+import ru.gorchanyuk.artemis.tdd.XmlOut;
 
 import static org.mockito.Mockito.*;
 
@@ -24,6 +25,6 @@ public class ProducerTest {
 
         producer.send();
 
-        verify(jmsTemplate).convertAndSend(any(), any());
+        verify(jmsTemplate).convertAndSend(anyString(), any(XmlOut.class));
     }
 }
