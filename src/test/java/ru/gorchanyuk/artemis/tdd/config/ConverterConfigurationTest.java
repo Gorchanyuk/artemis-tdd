@@ -1,6 +1,6 @@
 package ru.gorchanyuk.artemis.tdd.config;
 
-import jakarta.xml.bind.Marshaller;
+import org.springframework.oxm.Marshaller;
 import org.junit.jupiter.api.Test;
 import org.springframework.jms.support.converter.MarshallingMessageConverter;
 import org.springframework.jms.support.converter.MessageConverter;
@@ -10,7 +10,7 @@ import static org.mockito.Mockito.mock;
 
 public class ConverterConfigurationTest {
 
-    private ConverterConfiguration configuration = new ConverterConfiguration();
+    private final ConverterConfiguration configuration = new ConverterConfiguration();
 
     @Test
     void testGetMessageConverter() {
