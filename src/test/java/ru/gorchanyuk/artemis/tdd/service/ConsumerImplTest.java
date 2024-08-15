@@ -7,6 +7,7 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.jms.core.JmsTemplate;
+import ru.gorchanyuk.artemis.tdd.config.QueueProperty;
 import ru.gorchanyuk.artemis.tdd.dto.XmlIn;
 import ru.gorchanyuk.artemis.tdd.dto.XmlOut;
 import ru.gorchanyuk.artemis.tdd.service.impl.ConsumerImpl;
@@ -19,12 +20,15 @@ public class ConsumerImplTest {
 
     @Mock
     private JmsTemplate jmsTemplate;
+    @Mock
+    private QueueProperty property;
     @InjectMocks
     private ConsumerImpl consumer;
 
     @Test
     void testGetMessage() {
         XmlIn in = new XmlIn();
+        when(property.getOut()).thenReturn("out");
 
         consumer.receive(in);
 

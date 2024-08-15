@@ -34,6 +34,7 @@ public class ConsumerImplIT extends ArtemisContainerIT {
         Object result = converter.fromMessage(messageFromOut);
         assertTrue(result instanceof XmlOut);
     }
+
     @SneakyThrows
     @Test
     @DisplayName("Проверка отправки неправильного сообщения")
