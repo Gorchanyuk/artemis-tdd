@@ -1,6 +1,7 @@
 package ru.gorchanyuk.artemis.tdd.utils;
 
 import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.DisplayName;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.DynamicPropertyRegistry;
 import org.springframework.test.context.DynamicPropertySource;
@@ -11,6 +12,7 @@ import org.testcontainers.utility.DockerImageName;
 
 @SpringBootTest
 @Testcontainers
+@DisplayName("Базовая настройка тесстконтейнера")
 public abstract class ArtemisContainerIT {
 
     protected static final String QUEUE_IN = "in";

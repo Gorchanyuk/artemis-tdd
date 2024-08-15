@@ -11,16 +11,12 @@ import ru.gorchanyuk.artemis.tdd.dto.XmlIn;
 import ru.gorchanyuk.artemis.tdd.dto.XmlOut;
 import ru.gorchanyuk.artemis.tdd.utils.ArtemisContainerIT;
 
-import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class ConsumerImplIT extends ArtemisContainerIT {
 
     @Autowired
     private JmsTemplate jmsTemplate;
-
-    @Autowired
-    private MessageConverter converter;
 
     @SneakyThrows
     @Test
@@ -29,11 +25,25 @@ public class ConsumerImplIT extends ArtemisContainerIT {
 
         XmlIn in = new XmlIn();
         jmsTemplate.convertAndSend(QUEUE_IN, in);
+        MessageConverter converter = jmsTemplate.getMessageConverter();
 
-        Message message = jmsTemplate.receive(QUEUE_OUT);
+        Message messageFromOut = jmsTemplate.receive(QUEUE_OUT);
 
-        assertNotNull(message);
-        Object result = converter.fromMessage(message);
+        assertNotNull(messageFromOut);
+        assertNotNull(converter);
+        Object result = converter.fromMessage(messageFromOut);
         assertTrue(result instanceof XmlOut);
+    }
+    @SneakyThrows
+    @Test
+    @DisplayName("Проверка отправки неправильного сообщения")
+    void testReceiveFail() {
+
+        XmlOut out = new XmlOut();
+        jmsTemplate.convertAndSend(QUEUE_IN, out);
+
+        Message messageFromOut = jmsTemplate.receive("DLQ");
+
+        assertNotNull(messageFromOut);
     }
 }
