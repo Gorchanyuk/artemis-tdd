@@ -6,6 +6,7 @@ import org.springframework.jms.support.converter.MarshallingMessageConverter;
 import org.springframework.jms.support.converter.MessageConverter;
 import org.springframework.oxm.jaxb.Jaxb2Marshaller;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.Mockito.mock;
 
@@ -25,5 +26,9 @@ public class ConverterConfigurationTest {
     @Test
     void testGetMarshaller(){
 
+        Marshaller marshaller = configuration.getMarshaller();
+
+        assertTrue(marshaller instanceof Jaxb2Marshaller);
+        assertEquals("ru.gorchanyuk.artemis.tdd.dto",((Jaxb2Marshaller) marshaller).getPackagesToScan());
     }
 }
