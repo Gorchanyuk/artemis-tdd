@@ -1,0 +1,29 @@
+package ru.gorchanyuk.artemis.tdd.service;
+
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.jms.core.JmsTemplate;
+
+import static org.mockito.Mockito.*;
+
+@ExtendWith(MockitoExtension.class)
+@DisplayName("Тестирование отправки сообщений в очередь")
+public class ProducerTest {
+
+    @Mock
+    JmsTemplate jmsTemplate;
+    @InjectMocks
+    ProducerImpl producer;
+
+    @Test
+    void testSend(){
+
+        producer.send();
+
+        verify(jmsTemplate).convertAndSend(any(), any());
+    }
+}
