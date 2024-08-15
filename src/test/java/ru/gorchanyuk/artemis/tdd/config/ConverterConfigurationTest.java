@@ -4,6 +4,7 @@ import org.springframework.oxm.Marshaller;
 import org.junit.jupiter.api.Test;
 import org.springframework.jms.support.converter.MarshallingMessageConverter;
 import org.springframework.jms.support.converter.MessageConverter;
+import org.springframework.oxm.jaxb.Jaxb2Marshaller;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.Mockito.mock;
@@ -14,11 +15,15 @@ public class ConverterConfigurationTest {
 
     @Test
     void testGetMessageConverter() {
-        Marshaller marshaller = mock(Marshaller.class);
+        Marshaller marshaller = mock(Jaxb2Marshaller.class);
 
         MessageConverter converter = configuration.getMessageConverter(marshaller);
 
         assertTrue(converter instanceof MarshallingMessageConverter);
+    }
+
+    @Test
+    void testGetMarshaller(){
 
     }
 }
