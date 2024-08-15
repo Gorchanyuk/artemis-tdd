@@ -13,6 +13,9 @@ import org.testcontainers.utility.DockerImageName;
 @Testcontainers
 public abstract class ArtemisContainerIT {
 
+    protected static final String QUEUE_IN = "in";
+    protected static final String QUEUE_OUT = "out";
+
     @Container
     static GenericContainer<?> container =
             new GenericContainer<>(DockerImageName
@@ -25,6 +28,8 @@ public abstract class ArtemisContainerIT {
         registry.add("spring.artemis.broker-url",
                 () -> "tcp://%s:%d".formatted(container.getHost(),
                         container.getFirstMappedPort()));
+        registry.add("queue.in", () -> QUEUE_IN);
+        registry.add("queue.out", () -> QUEUE_OUT);
     }
 
     @AfterAll
