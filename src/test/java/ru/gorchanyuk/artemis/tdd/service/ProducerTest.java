@@ -7,7 +7,8 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.jms.core.JmsTemplate;
-import ru.gorchanyuk.artemis.tdd.XmlOut;
+import ru.gorchanyuk.artemis.tdd.dto.XmlOut;
+import ru.gorchanyuk.artemis.tdd.service.impl.ProducerImpl;
 
 import static org.mockito.Mockito.*;
 

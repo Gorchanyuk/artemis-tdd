@@ -1,9 +1,12 @@
-package ru.gorchanyuk.artemis.tdd.service;
+package ru.gorchanyuk.artemis.tdd.service.impl;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.jms.core.JmsTemplate;
-import ru.gorchanyuk.artemis.tdd.XmlOut;
+import org.springframework.stereotype.Service;
+import ru.gorchanyuk.artemis.tdd.dto.XmlOut;
+import ru.gorchanyuk.artemis.tdd.service.Producer;
 
+@Service
 @RequiredArgsConstructor
 public class ProducerImpl implements Producer {
 
