@@ -14,7 +14,7 @@ import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
 @DisplayName("Тестирование отправки сообщений в очередь")
-public class ProducerTest {
+public class ProducerImplTest {
 
     @Mock
     JmsTemplate jmsTemplate;
