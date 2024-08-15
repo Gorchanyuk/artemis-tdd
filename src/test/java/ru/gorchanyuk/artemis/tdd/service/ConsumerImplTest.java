@@ -6,7 +6,10 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.jms.core.JmsTemplate;
 import ru.gorchanyuk.artemis.tdd.dto.XmlIn;
+import ru.gorchanyuk.artemis.tdd.dto.XmlOut;
+import ru.gorchanyuk.artemis.tdd.service.impl.ConsumerImpl;
 
 import static org.mockito.Mockito.*;
 
@@ -15,9 +18,9 @@ import static org.mockito.Mockito.*;
 public class ConsumerImplTest {
 
     @Mock
-    private Producer producer;
+    private JmsTemplate jmsTemplate;
     @InjectMocks
-    private Consumer consumer;
+    private ConsumerImpl consumer;
 
     @Test
     void testGetMessage() {
@@ -25,6 +28,6 @@ public class ConsumerImplTest {
 
         consumer.receive(in);
 
-        verify(producer).send();
+        verify(jmsTemplate).convertAndSend(anyString(), any(XmlOut.class));
     }
 }
