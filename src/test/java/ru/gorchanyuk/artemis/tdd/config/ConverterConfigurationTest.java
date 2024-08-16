@@ -9,7 +9,7 @@ import org.springframework.oxm.jaxb.Jaxb2Marshaller;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.mock;
 
-public class ConverterConfigurationTest {
+class ConverterConfigurationTest {
 
     private final ConverterConfiguration configuration = new ConverterConfiguration();
 
@@ -19,7 +19,7 @@ public class ConverterConfigurationTest {
 
         MessageConverter converter = configuration.getMessageConverter(marshaller);
 
-        assertTrue(converter instanceof MarshallingMessageConverter);
+        assertInstanceOf(MarshallingMessageConverter.class, converter);
     }
 
     @Test
@@ -27,7 +27,7 @@ public class ConverterConfigurationTest {
 
         Marshaller marshaller = configuration.getMarshaller();
 
-        assertTrue(marshaller instanceof Jaxb2Marshaller);
+        assertInstanceOf(Jaxb2Marshaller.class, marshaller);
         String[] packagesToScan = ((Jaxb2Marshaller) marshaller).getPackagesToScan();
         assertNotNull(packagesToScan);
         assertEquals("ru.gorchanyuk.artemis.tdd.dto", packagesToScan[0]);

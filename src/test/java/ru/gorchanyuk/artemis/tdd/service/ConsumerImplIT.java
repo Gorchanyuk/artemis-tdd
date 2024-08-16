@@ -13,7 +13,7 @@ import ru.gorchanyuk.artemis.tdd.utils.ArtemisContainerIT;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-public class ConsumerImplIT extends ArtemisContainerIT {
+class ConsumerImplIT extends ArtemisContainerIT {
 
     @Autowired
     private JmsTemplate jmsTemplate;
@@ -32,7 +32,7 @@ public class ConsumerImplIT extends ArtemisContainerIT {
         assertNotNull(messageFromOut);
         assertNotNull(converter);
         Object result = converter.fromMessage(messageFromOut);
-        assertTrue(result instanceof XmlOut);
+        assertInstanceOf(XmlOut.class, result);
     }
 
     @SneakyThrows
