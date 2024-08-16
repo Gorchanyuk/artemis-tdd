@@ -19,7 +19,6 @@ public class ConsumerImpl implements Consumer {
     @Override
     @JmsListener(destination = "${queue.in}")
     public void receive(XmlIn in) {
-
         jmsTemplate.convertAndSend(property.getOut(), new XmlOut());
     }
 }
