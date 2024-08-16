@@ -16,7 +16,7 @@ import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
 @DisplayName("Тестирование получения сообщений")
-public class ConsumerImplTest {
+class ConsumerImplTest {
 
     @Mock
     private JmsTemplate jmsTemplate;
